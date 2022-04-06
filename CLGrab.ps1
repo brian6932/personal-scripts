@@ -8,13 +8,13 @@ if ($channel -ne '-p' -and $channel -ne '-f') {
         $charCount = $request.length
         $splitLength = $fossaMode ? 375 : 475
         $pasteMode ?
-        $charCount -ge 500 ? ($request | rg --pcre2 ".{$splitLength}\K\s" -r `n | pf | scb -PassThru) : ($request | pf | scb -PassThru):
-        $charCount -ge 500 ? ($request | rg --pcre2 ".{$splitLength}\K\s" -r `n | scb -PassThru) : ($request | scb -PassThru)
+        $charCount -ge 500 ? ($request | rg -P ".{$splitLength}\K\s" -r `n | pf | scb -p) : ($request | pf | scb -p):
+        $charCount -ge 500 ? ($request | rg -P ".{$splitLength}\K\s" -r `n | scb -p) : ($request | scb -p)
     }
     else {
-        Write-Host 'You have to provide a channel!' -ForegroundColor red
+        Write-Host 'You have to provide a channel!' -f red
     }
 }
 else {
-    Write-Host 'Args must be placed after channel' -ForegroundColor red
+    Write-Host 'Args must be placed after channel' -f red
 }
