@@ -1,3 +1,4 @@
+#Chatter List Grabber
 #Requires -Version 7.2.00000.000
 $channel = $args[0].ToLower()
 $fossaMode = $args[1] -eq '-f' -or $args[2] -eq '-f'
@@ -8,7 +9,7 @@ if ($channel -ne '-p' -and $channel -ne '-f') {
         $charCount = $request.length
         $splitLength = $fossaMode ? 375 : 475
         $pasteMode ?
-        $charCount -ge 500 ? ($request | rg -P ".{$splitLength}\K\s" -r `n | pf | scb -p) : ($request | pf | scb -p):
+        $charCount -ge 500 ? ($request | rg -P ".{$splitLength}\K\s" -r `n | pf | scb -p) : ($request | pf | scb -p) :
         $charCount -ge 500 ? ($request | rg -P ".{$splitLength}\K\s" -r `n | scb -p) : ($request | scb -p)
     }
     else {
