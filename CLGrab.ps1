@@ -5,7 +5,7 @@ $fossaMode = $args[1] -eq '-f' -or $args[2] -eq '-f'
 $pasteMode = $args[1] -eq '-p' -or $args[2] -eq '-p'
 if ($channel -ne '-p' -and $channel -ne '-f') {
     if ($channel) {
-        $request = pf -f https://tmi.twitch.tv/group/user/$channel/chatters | jq -r '.chatters.broadcaster, .chatters.vips, .chatters.moderators, .chatters.viewers | .[]' | rg -U '.\n' -r ' '
+        $request = (pf -f https://tmi.twitch.tv/group/user/$channel/chatters | jq -r '.chatters | .broadcaster, .vips, .moderators, .viewers | .[]') -join ' '
         $charCount = $request.length
         $splitLength = $fossaMode ? 375 : 475
         $pasteMode ?
