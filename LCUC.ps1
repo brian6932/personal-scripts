@@ -1,7 +1,7 @@
 #Logged Channel User Checker
 #Requires -Version 7.0.00000.000
 $logs = $args[0].ToLower()
-$user = curl -fsSL "https://api.ivr.fi/v2/twitch/user/$($args[1].ToLower())" | jq -r .id
+$user = curl -fsL "https://api.ivr.fi/v2/twitch/user/$($args[1].ToLower())" | jq -r .id
 
 if ($user) {
     $request = curl -sSL https://$logs/channels | jq -r '.channels[].userID'
