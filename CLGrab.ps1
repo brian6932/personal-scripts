@@ -13,7 +13,7 @@ if ($channel -and !($channel[0] -eq '-')) {
             $request = [Collections.Generic.HashSet[string]]::new([string[]]$arr) -join ' '
         }
         else {
-            $request = (pf -f https://tmi.twitch.tv/group/user/$channel/chatters | jq -r '.chatters | ..[]?') -join ' '
+            $request = (pf -f https://tmi.twitch.tv/group/user/$channel/chatters | jq -r '.chatters | .. | select(type == "string")') -join ' '
         }
         $charCount = $request.length
         $splitLength = $fossaMode ? 375 : 475
