@@ -1,2 +1,1 @@
-$link = $args[0]
-streamlink --player-passthrough hls $link best
+streamlink --player-passthrough hls $args[0] best
