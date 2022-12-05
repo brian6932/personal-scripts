@@ -1,4 +1,4 @@
-#Chatter (now with recent-mesages support) List Grabber
+# Chatter (now with recent-mesages support) List Grabber
 #Requires -Version 7.2.00000.000
 $channel = $args[0].ToLower()
 $fossaMode = $args[1..3] -contains '-f'

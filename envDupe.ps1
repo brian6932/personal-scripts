@@ -1,5 +1,2 @@
-$CurrentPath = [Environment]::GetEnvironmentVariable('Path','Machine')
-$SplittedPath = $CurrentPath -split ';'
-$CleanedPath = $SplittedPath | Sort-Object -Unique
-$NewPath = $CleanedPath -join ';'
-[Environment]::SetEnvironmentVariable('Path', $NewPath,'Machine')
+# Removes duplicates in $env:Path
+[Environment]::SetEnvironmentVariable('Path', ($env:Path -split ';' | Sort-Object -Unique) -join ';', 'Machine')

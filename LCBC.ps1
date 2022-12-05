@@ -1,4 +1,4 @@
-#Logged Channel Ban Checker
+# Logged Channel Ban Checker
 #Requires -Version 7.0.00000.000
 $request = curl -fsL "https://$($args[0].ToLower())/channels" | jq -r '.channels[].userID'
 $num = $request.length
