@@ -7,18 +7,18 @@ foreach ($arg in $args) {
         break
     }
 }
-foreach ($arg in $args) {
-    if ($arg -match '\Ai:\S+\Z') {
-        $instance = $arg.Substring(2)
-        break
-    }
-}
 $fossaMode = $args -contains '-f'
 $pasteMode = $args -contains '-p'
 $recentMode = $args -contains '-r'
 $noBots = $args -contains '-nb'
 if ($chan) {
     if ($recentMode) {
+        foreach ($arg in $args) {
+            if ($arg -match '\Ai:\S+\Z') {
+                $instance = $arg.Substring(2)
+                break
+            }
+        }
         $request = pf -f "https://$($instance ?? 'recent-messages.robotty.de')/api/v2/recent-messages/$chan" | jq -r '.messages | .[]'
         $arr = @()
         $request = $request[$request.length..0] | ForEach-Object { $_ -match "^@\S+ :($userRe)!\1@\1\.tmi\.twitch\.tv"; $arr += $Matches[1] }
