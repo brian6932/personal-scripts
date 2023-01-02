@@ -35,7 +35,7 @@ if ($chan) {
     }
     $request = $request -join ' '
     $charCount = if ($request.length -ge 500) { '| rg -P ".{$fossaMode}\K\s" -r `n' }
-    "`$request $charCount $pasteMode $clipboardMode" | Invoke-Expression
+    Invoke-Expression "`$request $charCount $pasteMode $clipboardMode"
 }
 else {
     Write-Host 'You have to provide a channel!' -f red
