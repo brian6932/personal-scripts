@@ -31,7 +31,7 @@ if ($chan) {
     }
     # no bots mode
     if ($args -contains '-nb') {
-        $request = $request | Where-Object { $_ -notmatch "bo?t{1,2}(?:(?:ard)?o|\d|_)*$|^(?:fembajs|veryhag|scriptorex|apulxd|qdc26534|linestats|pepegaboat|sierrapine|charlestonbieber|icecreamdatabase|chatvote|localaniki|rewardmore|gorenmu|0weebs|befriendlier|electricbodybuilder|o?bot(?:bear1{3}0|2465|menti|e|nextdoor)|stream(?:elements|labs))$" }
+        $request = $request | Where-Object { $_ -notmatch 'bo?t{1,2}(?:(?:ard)?o|\d|_(?:xd)?)*$|^(?:fembajs|veryhag|funtoon|rainmaker|isabellesays|scriptorex|apulxd|qdc26534|linestats|pepegaboat|sierrapine|charlestonbieber|icecreamdatabase|chatvote|localaniki|rewardmore|gorenmu|0weebs|be(?:friendlier|tnotifier)|xdforsenxdlol|y_erf|bbangddeock|electricbodybuilder|o?bot(?:bear1{3}0|2465|menti|e|nextdoor)|stream(?:elements|labs))$' }
     }
     $request = $request -join ' '
     $charCount = if ($request.length -ge 500) { '| rg -P ".{$fossaMode}\K\s" -r `n' }
