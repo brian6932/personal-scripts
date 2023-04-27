@@ -21,9 +21,9 @@ if ($chan) {
             }
         }
         $request = Invoke-RestMethod "https://$($instance ?? 'recent-messages.robotty.de')/api/v2/recent-messages/$chan" | jq -r '.messages | .[]'
-        $arr = @()
-        $request = $request[$request.length..0] | ForEach-Object { $_ -match "^@\S+ :($userRe)!\1@\1\.tmi\.twitch\.tv"; $arr += $Matches[1] }
-        $request = [Collections.Generic.HashSet[string]]::new([string[]]$arr)
+        $set = [Collections.Generic.HashSet[string]]::new()
+        $request = $request[$request.length..0] | ForEach-Object { if ($_ -match "^@\S+ :($userRe)!\1@\1\.tmi\.twitch\.tv") { $set.Add($Matches[1]) } }
+        $request = $set
     }
     else {
         $ProgressPreference = 'SilentlyContinue'
