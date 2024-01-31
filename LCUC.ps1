@@ -11,9 +11,9 @@ try {
         [UInt32]$args[1]
     }
     catch {
-        $args[1] = ([string]$args[1]).Substring($args[1][1] -eq '@')
-        (Invoke-RestMethod https://gql.twitch.tv/gql -Method Post -Body ('{"query":"{user(login:\"'+$args[1]+'\"lookupType:ALL){id}}"}') -Headers @{'client-id'='ue6666qo983tsx6so1t0vnawi233wa'}).id
+        (Invoke-RestMethod https://gql.twitch.tv/gql -Method Post -Body ('{"query":"{user(login:\"'+([string]$args[1]).Substring($args[1][1] -eq '@')+'\"lookupType:ALL){id}}"}') -Headers @{'client-id'='ue6666qo983tsx6so1t0vnawi233wa'}).data.user.id
     }
+    if (!$user) { throw }
     $request = (Invoke-RestMethod https://$logs/channels).channels.userID
     if (!$request) {
         Write-Host 'Instance not found' -ForegroundColor Red
