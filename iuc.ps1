@@ -1,2 +1,2 @@
 $ErrorActionPreference = 'Stop'
-curl.exe -X POST https://i.alienpls.org/upload -F "file=@$([IO.FileInfo](Get-Item -LiteralPath $args[0]))"
+& (Get-Command -CommandType Application curl)[0].Name -X POST https://i.alienpls.org/upload -F "file=@$([IO.FileInfo](Get-Item -LiteralPath $args[0]))"

@@ -1,1 +1,1 @@
-Set-Location (& (Get-Command -CommandType Application walk) $args)
+Set-Location (& (Get-Command -CommandType Application walk)[0].Name $args)
